@@ -3,214 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hayden's Addons | Next-Gen MCPE</title>
+    <title>Hayden's Addons | Best Minecraft Bedrock Addons</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         :root {
-            --primary: #3b82f6;
-            --accent: #8b5cf6;
-            --bg: #020617;
+            --mcbe-blue: #3273dc;
+            --mcbe-dark: #1a1c23;
+            --mcbe-bg: #f5f7fa;
+            --mcbe-card-bg: #ffffff;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg);
-            color: #f8fafc;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--mcbe-bg);
+            color: #4a4a4a;
         }
 
-        /* Animated Background Mesh */
-        .bg-mesh {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.15) 0%, transparent 40%);
-            filter: blur(80px);
+        /* McbeTools Inspired Header */
+        .navbar {
+            background: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #e1e4e8;
         }
 
-        /* Glassmorphism Refined */
-        .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .nav-link {
+            color: #4a4a4a;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
-        .glass-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+        .nav-link:hover {
+            color: var(--mcbe-blue);
         }
 
-        /* Glow Text Effect */
-        .glow-text {
-            text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
-        }
-
-        /* Premium Buttons */
-        .btn-premium {
-            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-            position: relative;
+        /* Card Styling */
+        .addon-card {
+            background: var(--mcbe-card-bg);
+            border-radius: 8px;
             overflow: hidden;
-            transition: all 0.3s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #e1e4e8;
         }
 
-        .btn-premium::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.1);
-            transform: rotate(45deg);
-            transition: 0.5s;
+        .addon-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-premium:hover::after {
-            left: 120%;
+        .btn-download {
+            background-color: var(--mcbe-blue);
+            color: white;
+            font-weight: 600;
+            transition: opacity 0.2s;
         }
 
-        .btn-premium:hover {
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
-            transform: scale(1.02);
+        .btn-download:hover {
+            opacity: 0.9;
         }
 
-        /* Dev Progress Bar Animation */
-        @keyframes pulse-width {
-            0%, 100% { width: 35%; opacity: 0.8; }
-            50% { width: 38%; opacity: 1; }
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #2b32b2, #1488cc);
+            color: white;
+            border-radius: 12px;
         }
-        .progress-animate {
-            animation: pulse-width 2s infinite ease-in-out;
+
+        /* Sidebar Look */
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-radius: 6px;
+            color: #4a4a4a;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background: #eef2f7;
+            color: var(--mcbe-blue);
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #999; }
     </style>
 </head>
 <body class="min-h-screen">
-    <div class="bg-mesh"></div>
 
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-[#020617]/70 backdrop-blur-xl border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="group cursor-pointer">
-                <h1 class="text-2xl font-black tracking-tighter uppercase italic">
-                    <span class="text-white group-hover:text-blue-400 transition">Hayden's</span>
-                    <span class="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent glow-text">Addons</span>
-                </h1>
-            </div>
-            
-            <div class="hidden lg:flex items-center gap-10 text-[13px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="#" class="hover:text-white transition-colors relative group">
-                    Home
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 group-hover:w-full transition-all"></span>
+    <!-- Top Navbar -->
+    <nav class="navbar sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <a href="#" class="text-xl font-extrabold tracking-tight flex items-center gap-2">
+                    <span class="text-slate-800">HAYDEN'S</span>
+                    <span class="text-blue-600">ADDONS</span>
                 </a>
-                <a href="#" class="hover:text-white transition-colors relative group">Addons</a>
-                <button onclick="showComingSoon('Discord Server')" class="hover:text-white transition-colors relative group">Discord</button>
-                <button onclick="showComingSoon('Support Portal')" class="px-5 py-2 rounded-full border border-white/10 hover:bg-white/5 transition">Support</button>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#" class="nav-link">Addons</a>
+                    <a href="#" class="nav-link">Worlds</a>
+                    <a href="#" class="nav-link">Skins</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="showComingSoon('Submission Portal')" class="bg-blue-600 text-white px-4 py-2 rounded font-bold text-sm hover:bg-blue-700 transition">SUBMIT ADDON</button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="relative max-w-7xl mx-auto px-6 pt-16 pb-12 overflow-hidden">
-        <div class="flex flex-col items-center text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-bold uppercase tracking-tighter mb-6">
-                <span class="w-2 h-2 rounded-full bg-blue-500 animate-ping"></span>
-                New Updates Weekly
-            </div>
-            <h2 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 max-w-4xl leading-[1.1]">
-                Revolutionizing your <span class="bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent">Bedrock</span> Experience.
-            </h2>
-            <p class="text-slate-400 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">
-                The most optimized, feature-rich addons for MCPE. Built with performance and gameplay in mind.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#browse" class="btn-premium px-8 py-4 rounded-2xl font-bold text-white shadow-2xl">Browse Catalog</a>
-                <button onclick="showComingSoon('Discord Server')" class="px-8 py-4 rounded-2xl font-bold text-slate-300 bg-white/5 border border-white/10 hover:bg-white/10 transition">Join Discord</button>
-            </div>
-        </div>
-    </section>
+    <div class="max-w-7xl mx-auto px-4 py-8 flex flex-col lg:flex-row gap-8">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="w-full lg:w-64 shrink-0">
+            <div class="bg-white rounded-lg p-4 border border-slate-200 shadow-sm sticky top-24">
+                <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 px-2">Navigation</h4>
+                <nav class="flex flex-col gap-1">
+                    <a href="#" class="sidebar-item bg-slate-100 text-blue-600">
+                        <span class="mr-3">🔥</span> Trending
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span class="mr-3">🕒</span> Recent
+                    </a>
+                    <a href="#" class="sidebar-item">
+                        <span class="mr-3">💎</span> Premium
+                    </a>
+                </nav>
 
-    <!-- Content Grid -->
-    <main id="browse" class="max-w-7xl mx-auto px-6 py-12">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
-            <div>
-                <h3 class="text-3xl font-bold text-white mb-2">Available Downloads</h3>
-                <p class="text-slate-500">Curated packs ready for your world.</p>
-            </div>
-            <div id="addon-count" class="bg-slate-900/50 border border-white/5 px-4 py-2 rounded-xl text-slate-400 text-sm font-bold">
-                0 Total Addons
-            </div>
-        </div>
-
-        <!-- Addon Grid -->
-        <div id="addon-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            <!-- Dynamic Addons -->
-        </div>
-
-        <!-- Premium "In Development" Showcase -->
-        <div class="mt-20">
-            <div class="glass-card rounded-[2.5rem] p-12 border-white/10 relative overflow-hidden group">
-                <!-- Background Decorative Element -->
-                <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl group-hover:bg-blue-500/20 transition-all"></div>
-                
-                <div class="relative z-10 flex flex-col items-center text-center">
-                    <div class="mb-6 px-4 py-1.5 rounded-full bg-amber-500/20 text-amber-500 border border-amber-500/30 text-[10px] font-black uppercase tracking-widest">
-                        Project Status: Active Development
-                    </div>
-                    <h4 class="text-4xl md:text-5xl font-black mb-4">Skygen Maker Addon</h4>
-                    <p class="text-slate-400 text-lg max-w-xl mb-10">
-                        The definitive tool for Skygen creators. Build custom generators, shops, and leveling systems with a single command.
-                    </p>
-                    
-                    <div class="w-full max-w-2xl bg-slate-950/50 rounded-2xl p-6 border border-white/5">
-                        <div class="flex justify-between text-sm mb-3">
-                            <span class="text-slate-400 font-bold uppercase tracking-tight">Phase 1: Logic Engine</span>
-                            <span class="text-blue-400 font-bold">35%</span>
-                        </div>
-                        <div class="h-4 w-full bg-slate-900 rounded-full p-1 border border-white/5 shadow-inner">
-                            <div class="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full progress-animate shadow-[0_0_15px_rgba(59,130,246,0.5)]"></div>
-                        </div>
-                        <p class="mt-6 text-sm font-bold italic text-blue-500">Coming this summer • By Hayden</p>
-                    </div>
+                <div class="mt-8">
+                    <h4 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4 px-2">Community</h4>
+                    <button onclick="showComingSoon('Discord Server')" class="w-full sidebar-item">
+                        <span class="mr-3">💬</span> Discord
+                    </button>
+                    <button onclick="showComingSoon('Twitter')" class="w-full sidebar-item">
+                        <span class="mr-3">🐦</span> Twitter
+                    </button>
                 </div>
             </div>
-        </div>
-    </main>
+        </aside>
 
-    <!-- Footer -->
-    <footer class="max-w-7xl mx-auto px-6 py-20 border-t border-white/5 text-center">
-        <p class="text-slate-500 text-sm">© 2024 Hayden's Addons. Not an official Minecraft product.</p>
-    </footer>
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Hero -->
+            <div class="hero-banner p-10 mb-8 relative overflow-hidden shadow-lg">
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-black mb-2">Discover New Addons</h2>
+                    <p class="text-blue-100 mb-6 max-w-lg">Hand-picked, high quality mods and tools for Minecraft: Bedrock Edition.</p>
+                    <div class="flex gap-3">
+                        <button class="bg-white text-blue-600 px-6 py-2 rounded font-bold hover:bg-blue-50 transition shadow-md">Top Rated</button>
+                    </div>
+                </div>
+                <!-- Abstract Design Overlay -->
+                <div class="absolute right-0 top-0 h-full w-1/2 bg-white/10 -skew-x-12 translate-x-1/4"></div>
+            </div>
+
+            <!-- Grid Header -->
+            <div class="flex items-center justify-between mb-6 border-b border-slate-200 pb-4">
+                <h3 class="text-xl font-bold text-slate-800">Latest Creations</h3>
+                <div class="text-sm font-medium text-slate-500" id="addon-count">0 Addons Total</div>
+            </div>
+
+            <!-- Addon Grid -->
+            <div id="addon-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                <!-- Dynamic Content Loads Here -->
+            </div>
+
+            <!-- In Dev Card -->
+            <div class="mt-12 bg-white rounded-xl border border-slate-200 p-8 flex flex-col md:flex-row items-center gap-8 shadow-sm">
+                <div class="w-24 h-24 bg-amber-50 rounded-2xl flex items-center justify-center shrink-0">
+                    <span class="text-4xl">🛠️</span>
+                </div>
+                <div class="text-center md:text-left">
+                    <div class="inline-block bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-0.5 rounded-full mb-2">IN DEVELOPMENT</div>
+                    <h4 class="text-2xl font-black text-slate-800">Skygen Maker Addon</h4>
+                    <p class="text-slate-500 mb-4">The ultimate generator creator. Coming this summer.</p>
+                    <div class="w-full md:w-64 h-2 bg-slate-100 rounded-full overflow-hidden">
+                        <div class="h-full bg-blue-500 w-[35%]"></div>
+                    </div>
+                </div>
+                <div class="md:ml-auto">
+                    <button class="bg-slate-800 text-white px-6 py-2 rounded-lg font-bold text-sm">NOTIFY ME</button>
+                </div>
+            </div>
+        </main>
+    </div>
 
     <!-- Universal Modal -->
-    <div id="app-modal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-[100] px-4 backdrop-blur-sm">
-        <div class="glass-card p-10 rounded-[2rem] max-w-md w-full text-center border-blue-500/30">
-            <div id="modal-icon-container" class="w-20 h-20 bg-blue-500/20 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <!-- Icon injected by JS -->
+    <div id="app-modal" class="fixed inset-0 bg-slate-900/60 hidden items-center justify-center z-[100] px-4 backdrop-blur-sm">
+        <div class="bg-white p-8 rounded-xl max-w-sm w-full text-center shadow-2xl border border-slate-200">
+            <div id="modal-icon-container" class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <!-- Icon -->
             </div>
-            <h3 class="text-2xl font-bold mb-3" id="modal-title">Preparing...</h3>
-            <p class="text-slate-400 mb-8" id="modal-text">Processing request.</p>
-            <button onclick="closeModal()" class="w-full py-4 bg-white/5 hover:bg-white/10 rounded-2xl font-bold transition border border-white/10">Close</button>
+            <h3 class="text-xl font-black text-slate-800 mb-2" id="modal-title">Preparing...</h3>
+            <p class="text-slate-500 mb-8 text-sm" id="modal-text">Processing request.</p>
+            <button onclick="closeModal()" class="w-full py-3 bg-slate-100 hover:bg-slate-200 rounded font-bold transition text-slate-700">Close</button>
         </div>
     </div>
 
     <script>
         // ADDON REGISTRY
+        // Add your addons to this array when you have them!
         const addons = [];
 
         const container = document.getElementById('addon-container');
@@ -221,44 +217,41 @@
         const modalIcon = document.getElementById('modal-icon-container');
 
         function renderAddons() {
-            countDisplay.innerText = `${addons.length} Total Addons`;
+            countDisplay.innerText = `${addons.length} Addons Total`;
             
             if (addons.length === 0) {
                 container.innerHTML = `
-                    <div class="col-span-full py-20 text-center glass-card rounded-[2rem] border-dashed border-2 border-white/5">
-                        <div class="text-6xl mb-4">📦</div>
-                        <h4 class="text-xl font-bold text-slate-300">The Vault is Empty</h4>
-                        <p class="text-slate-500">Hayden is cooking something special. Check back later!</p>
+                    <div class="col-span-full py-20 text-center bg-white rounded-xl border-2 border-dashed border-slate-200">
+                        <div class="text-5xl mb-4 opacity-20">📂</div>
+                        <h4 class="text-lg font-bold text-slate-400">No addons found</h4>
+                        <p class="text-slate-400 text-sm">Check back later for new releases!</p>
                     </div>
                 `;
                 return;
             }
 
             container.innerHTML = addons.map((addon) => `
-                <div class="glass-card rounded-[2rem] overflow-hidden flex flex-col group/card">
-                    <div class="relative aspect-video overflow-hidden">
-                        <img src="${addon.thumbnail}" alt="${addon.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent opacity-60"></div>
-                        <div class="absolute top-4 right-4 bg-white/10 backdrop-blur-md text-[10px] font-black px-3 py-1 rounded-full border border-white/20 uppercase tracking-widest">
-                            ${addon.tag || 'Pack'}
+                <div class="addon-card flex flex-col group">
+                    <div class="relative aspect-video overflow-hidden bg-slate-200">
+                        <img src="${addon.thumbnail}" alt="${addon.name}" class="w-full h-full object-cover">
+                        <div class="absolute top-2 right-2 bg-blue-600 text-[10px] text-white font-black px-2 py-0.5 rounded uppercase">
+                            MCPACK
                         </div>
                     </div>
-                    <div class="p-8 flex-grow flex flex-col">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-[10px] font-bold text-blue-400 uppercase tracking-tighter">Verified Creator</span>
-                            <div class="h-px bg-blue-500/20 flex-grow"></div>
+                    <div class="p-4 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="font-bold text-slate-800 leading-tight group-hover:text-blue-600 transition">${addon.name}</h4>
                         </div>
-                        <h4 class="text-2xl font-bold mb-1">${addon.name}</h4>
-                        <p class="text-sm text-slate-500 mb-6 italic">By ${addon.by}</p>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
-                            ${addon.description || 'No description available for this pack.'}
+                        <p class="text-xs text-slate-400 mb-4">by ${addon.by}</p>
+                        <p class="text-sm text-slate-500 mb-6 flex-grow line-clamp-2">
+                            ${addon.description || 'No description available for this content.'}
                         </p>
                         <button onclick="triggerDownload('${addon.name}', '${addon.downloadUrl}')" 
-                                class="btn-premium w-full py-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewbox="0 0 24 24" stroke="currentColor">
+                                class="btn-download w-full py-2.5 rounded text-sm flex items-center justify-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewbox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
-                            Direct Download
+                            Download
                         </button>
                     </div>
                 </div>
@@ -268,30 +261,20 @@
         function showComingSoon(feature) {
             modal.style.display = 'flex';
             modalTitle.innerText = "Coming Soon";
-            modalText.innerText = `The ${feature} is currently under construction. Stay tuned for the launch!`;
-            modalIcon.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewbox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-            `;
-            modalIcon.className = "w-20 h-20 bg-amber-500/20 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-6";
+            modalText.innerText = `Our ${feature} is launching soon. Check our socials for updates.`;
+            modalIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+            modalIcon.className = "w-16 h-16 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-4";
         }
 
         function triggerDownload(name, url) {
             modal.style.display = 'flex';
-            modalTitle.innerText = "Connecting...";
-            modalText.innerText = `Establishing link to download ${name}.`;
-            modalIcon.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 animate-bounce" fill="none" viewbox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-            `;
-            modalIcon.className = "w-20 h-20 bg-blue-500/20 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-6";
+            modalTitle.innerText = "Starting Download";
+            modalText.innerText = `You are downloading ${name}. Your file is being prepared...`;
+            modalIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewbox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>`;
+            modalIcon.className = "w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4";
 
-            setTimeout(() => {
-                modalTitle.innerText = "Downloading...";
-                modalText.innerText = `Transferring ${name} pack to your device.`;
-            }, 1500);
+            // Logic to start download
+            // window.location.href = url;
         }
 
         function closeModal() {
